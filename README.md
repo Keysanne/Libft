@@ -4,3 +4,5 @@ this is a sample website made as part of [LearnEnough Git to be dangerous](http:
 
 After finishing *LearnEnough* Git to be dangerous,
 You'll know enough Git to be *dangerous*.
+
+Bye
