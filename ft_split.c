@@ -49,14 +49,13 @@ char	**ft_split(const char *str, char c)
 		while (str[i] == c)
 		{
 			if (str[i - 1] != c)
-				j++;
+				tab[j++][k] = 0;
 			i++;
 		}
 	}
-	tab[j++] = 0;
+	tab[j] = 0;
 	return (tab);
 }
-
 /*
 int	main(int argc, char **argv)
 {

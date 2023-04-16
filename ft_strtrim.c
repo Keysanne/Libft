@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	is_charset(char c, char *charset)
+int	is_charset(char c, const char *charset)
 {
 	int	i;
 
@@ -27,29 +27,30 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		i;
 	int		j;
+	int		k;
 	char	*str;
 
 	i = 0;
-	while (s1[i])
-		i++;
-	str = malloc(i * sizeof(char));
+	j = 0;
+	while (s1[i++])
+		j++;
+	str = malloc(j * sizeof(char));
 	if (!str)
 		return (NULL);
 	i = 0;
-	j = 0;
-	while (s1[i])
-	{
-		if (is_charset(s1[i], (char *)set) == 0)
-			str[j++] = s1[i];
+	while (is_charset(s1[i], set) == 1)
 		i++;
-	}
-	str[j] = 0;
+	while (is_charset(s1[j - 1], set) == 1)
+		j--;
+	k = 0;
+	while (i < j)
+		str[k++] = s1[i++];
+	str[k] = 0;
 	return (str);
 }
 /*
-#include <stdio.h>
 int	main(int argc, char **argv )
 {
-	printf("%s\n", ft_strtrim(argv[1], argv[2]));
+	printf("%s\n", ft_strtrim("o.,oo,.o-bon.j,our-o.,..,.o", "o.,"));
 	return (0);
 }*/
