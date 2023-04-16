@@ -31,11 +31,11 @@ void	ft_putnbr_fd(int n, int fd)
 	else
 		ft_putchar_fd(n + '0', fd);
 }
-
+/*
 int	main()
 {
 	int	x = -2147483648;
 
 	ft_putnbr_fd(x, 1);
 	return (0);
-}
+}*/
