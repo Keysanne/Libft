@@ -6,7 +6,7 @@
 /*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:23:20 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/04/14 09:57:40 by tbatteux         ###   ########.fr       */
+/*   Updated: 2023/04/17 15:39:21 by tbatteux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,28 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	int	j;
+	size_t	j;
+	size_t	i;
 
+	i = 0;
 	j = 0;
-	while (src[j])
+	while (dst[i] && i < size)
+		i++;
+	while (src[j] && size && i + j < size - 1)
 	{
-		dst[(size - 1) + j] = src[j];
+		dst[i + j] = src[j];
 		j++;
 	}
-	dst[(size - 1) + j] = 0;
+	if (i < size)
+		dst[i + j] = 0;
 	j = 0;
-	while (dst[j])
+	while (src[j])
 		j++;
-	return (j);
+	return (i + j);
 }
 /*
 int	main(int argc, char **argv)
 {
-	printf("%ld\n", ft_strlcat(argv[1], argv[2], 7));
+	printf("%ld\n", ft_strlcat(argv[1], argv[2], 2));
 	return (0);
 }*/

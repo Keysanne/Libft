@@ -6,70 +6,35 @@
 /*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 09:56:29 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/04/14 09:56:58 by tbatteux         ###   ########.fr       */
+/*   Updated: 2023/04/17 10:37:59 by tbatteux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcat(char *dest, char *src)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
-	int	j;
-
-	j = 0;
-	i = 0;
-	while (dest[i])
-		i++;
-	while (src[j])
-		dest[i + j] = src[j++];
-	dest[i + j] = 0;
-	return (dest);
-}
-
-int	calcul(int size, char **strs, char *sep)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	if (size == 0)
-		return (1);
-	while (j < size)
-	{
-		i += ft_strlen(strs[j++]);
-		i += ft_strlen(sep);
-	}
-	return (i);
-}
-
-char	*ft_strjoin(int size, char **strs, char *sep)
-{
+	int		j;
 	char	*final;
-	int		i;
 
-	i = 0;
-	final = malloc(calcul(size, strs, sep) * sizeof(char));
+	final = malloc((ft_strlen(s1) + ft_strlen(s2)) * sizeof(char));
 	if (!final)
-		return (0);
-	final[0] = 0;
-	if (size == 0)
-		return (final);
-	while (i < size)
-	{
-		ft_strcat(final, strs[i]);
-		if (i < size - 1)
-			ft_strcat(final, sep);
-		i++;
-	}
+		return (NULL);
+	j = -1;
+	while (s1[++j])
+		final[j] = s1[j];
+	j = -1;
+	while (s2[++j])
+		final[ft_strlen(s1) + j] = s2[j];
+	final[ft_strlen(s1) + j] = 0;
 	return (final);
 }
 /*
 int	main(int argc, char **argv)
 {
-	char	sep[] = "...";
+	char const	s1[] = "je";
+	char const	s2[] = " testghjkgu feklfgwq;gjrlkeg rlgnreklg wqggl qwgkl yo";
 
-	printf("%s\n", ft_strjoin(argc, argv, sep));
+	printf("%s\n", ft_strjoin(s1, s2));
 	return (0);
 }*/

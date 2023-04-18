@@ -6,7 +6,7 @@
 /*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:04:43 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/04/14 10:06:06 by tbatteux         ###   ########.fr       */
+/*   Updated: 2023/04/17 10:09:08 by tbatteux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	int	i;
-	int	max;
+	size_t	i;
+	size_t	max;
 
 	i = 0;
 	if (!little[i])
