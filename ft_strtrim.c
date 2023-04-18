@@ -6,7 +6,7 @@
 /*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:34:58 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/04/14 10:10:08 by tbatteux         ###   ########.fr       */
+/*   Updated: 2023/04/18 11:54:59 by tbatteux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,15 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*str;
 
 	i = 0;
-	j = 0;
-	while (s1[i++])
-		j++;
-	str = malloc(j * sizeof(char));
+	while (s1[i] && is_charset(s1[i], set) == 1)
+		i++;
+	j = ft_strlen(s1);
+	while (j > i && is_charset(s1[j - 1], set) == 1)
+		j--;
+	k = ft_strlen(s1) - j;
+	str = malloc((ft_strlen(s1) - k - i + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
-	i = 0;
-	while (is_charset(s1[i], set) == 1)
-		i++;
-	while (is_charset(s1[j - 1], set) == 1)
-		j--;
 	k = 0;
 	while (i < j)
 		str[k++] = s1[i++];

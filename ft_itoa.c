@@ -6,39 +6,55 @@
 /*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:58:39 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/04/13 17:52:33 by tbatteux         ###   ########.fr       */
+/*   Updated: 2023/04/18 15:13:34 by tbatteux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int nb)
+char	*fin(char *new)
+{
+	int		i;
+	char	*final;
+
+	i = ft_strlen(new);
+	final = malloc ((i + 1) * sizeof(char));
+	if (!final)
+		return (NULL);
+	i = -1;
+	while (new[++i])
+		final[i] = new[i];
+	final[i] = 0;
+	return (final);
+}
+
+char	*ft_itoa(int n)
 {
 	int		i;
 	int		max;
-	char	*str;
+	char	str[12];
 
 	max = 1000000000;
 	i = 0;
-	str = malloc(11 * sizeof(char));
-	if (nb < 0)
+	if (n == 0)
+		return (fin("0"));
+	if (n < 0)
 	{
-		if (nb == -2147483648)
-			return ("-2147483648");
-		str[i] = '-';
-		i++;
+		if (n == -2147483648)
+			return (fin("-2147483648"));
+		str[i++] = '-';
+		n = -n;
 	}
-	while (nb / max == 0)
+	while (n / max == 0)
 		max /= 10;
 	while (max >= 1)
 	{
-		str[i] = (nb / max) + '0';
-		nb -= (nb / max) * max;
+		str[i++] = (n / max) + '0';
+		n -= (n / max) * max;
 		max /= 10;
-		i++;
 	}
 	str[i] = 0;
-	return (str);
+	return (fin(str));
 }
 /*
 int	main()

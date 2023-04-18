@@ -6,7 +6,7 @@
 /*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:04:06 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/04/17 16:35:54 by tbatteux         ###   ########.fr       */
+/*   Updated: 2023/04/18 09:55:14 by tbatteux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 		i++;
 	}
+	if (s2[i] && i < n)
+		return (-1);
 	return (0);
 }
 
