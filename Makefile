@@ -6,7 +6,7 @@
 #    By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 13:43:01 by tbatteux          #+#    #+#              #
-#    Updated: 2023/04/17 11:33:33 by tbatteux         ###   ########.fr        #
+#    Updated: 2023/04/19 10:44:40 by tbatteux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,12 @@ FICHIERS_C = ft_atoi.c ft_bzero.c ft_calloc.c \
 
 FICHIERS_O = ${FICHIERS_C:.c=.o}
 
+BONUS_C = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
+	 ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \
+	ft_lstclear.c ft_lstiter.c ft_lstmap.c 
+
+BONUS_O = ${BONUS_C:.c=.o}
+
 all: ${NAME}
 
 ${NAME}: ${FICHIERS_O}
@@ -34,6 +40,12 @@ ${NAME}: ${FICHIERS_O}
 
 ${FICHIERS_O}: ${FICHIERS_C}
 	gcc -c ${FICHIERS_C} -Wall -Wextra -Werror
+
+bonus: ${BONUS_O}
+	ar rc ${NAME} ${FICHIERS_O} ${BONUS_O}
+
+${BONUS_O}: ${BONUS_C}
+	gcc -c ${BONUS_C} -Wall -Wextra -Werror
 
 clean: 
 	rm -f ${FICHIERS_O}
