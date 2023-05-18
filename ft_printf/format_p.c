@@ -27,11 +27,6 @@ int	adresse(unsigned long ptr)
 	return (i);
 }
 
-/*
-	sizeof(ptr) * 2
-	0xAAFFBBCC
-	0x00BBCCDDEEFFDDCC
-*/
 int	format_p(va_list stk)
 {
 	return (adresse((unsigned long)va_arg(stk, void *)));

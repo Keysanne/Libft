@@ -32,9 +32,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 /*
 int	main(int argc, char **argv)
 {
+	char		*final;
 	char const	s1[] = "je";
 	char const	s2[] = " testghjkgu feklfgwq;gjrlkeg rlgnreklg wqggl qwgkl yo";
 
-	printf("%s\n", ft_strjoin(s1, s2));
+	final = ft_strjoin(s1, s2);
+	printf("%s\n", final);
+	free(final);
 	return (0);
 }*/

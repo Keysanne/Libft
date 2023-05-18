@@ -19,11 +19,25 @@
 # include <stddef.h>
 # include <stdarg.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
+
+# ifndef FD_LIMITS
+#  define FD_LIMITS 1024
+# endif
+
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }		t_list;
+
+typedef struct s_gnl
+{
+	char			*content;
+	struct s_gnl	*next;
+}				t_gnl;
 
 int		ft_atoi(const char *nptr);
 int		ft_isalnum(int c);
@@ -43,6 +57,8 @@ int		ft_tolower(int c );
 int		ft_toupper(int c);
 int		format_p(va_list stk);
 int		ft_lstsize(t_list *lst);
+int		is_valid(t_gnl *reste);
+char	*get_next_line_bonus(int fd);
 char	*ft_itoa(int nb);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strrchr(const char *s, int c);
@@ -73,9 +89,16 @@ void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	ft_lstadd_front(t_list **lst, t_list *new);
+void	lire_et_stock(int fd, t_gnl **reste);
+void	add_reste(t_gnl **reste, char *lu, int ret);
+void	taille_ligne(t_gnl *reste, char **ligne);
+void	get_ligne(char **ligne, t_gnl *reste);
+void	clean_reste(t_gnl **reste);
+void	free_reste(t_gnl *reste);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
+t_gnl	*get_last(t_gnl *reste);
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list	*ft_lstlast(t_list *lst);
